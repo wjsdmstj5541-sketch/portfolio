@@ -160,7 +160,65 @@ img {
     font-weight: 400;
     color: var(--text-muted);
     letter-spacing: 0.1em;
+    margin-top: var(--space-lg);
+}
+
+.loading-quote {
+    font-family: var(--font-kr);
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    font-weight: 500;
+    color: var(--text-secondary);
     margin-bottom: var(--space-lg);
+    opacity: 0;
+    animation: fadeInUp 0.8s ease forwards;
+    animation-delay: 0.3s;
+}
+
+.loading-keywords {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-md);
+    margin-bottom: var(--space-xl);
+}
+
+.loading-keyword {
+    font-family: var(--font-kr);
+    font-size: 0.938rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    opacity: 0;
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.keyword-dot {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    opacity: 0;
+    animation: fadeIn 0.4s ease forwards;
+    animation-delay: 0.5s;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 .loading-bar {
@@ -871,22 +929,22 @@ img {
 }
 
 /* ==========================================
-   Portfolio Gallery
+   Portfolio Gallery - Masonry Grid
    ========================================== */
 .portfolio {
     background: var(--bg-secondary);
 }
 
-/* Portfolio Tabs */
-.portfolio-tabs {
+/* Filter Buttons */
+.portfolio-filters {
     display: flex;
     justify-content: center;
     gap: var(--space-sm);
     flex-wrap: wrap;
-    margin-bottom: var(--space-xl);
+    margin-bottom: var(--space-2xl);
 }
 
-.tab-btn {
+.filter-btn {
     padding: var(--space-sm) var(--space-lg);
     background: transparent;
     border: 1px solid var(--border-color);
@@ -899,135 +957,256 @@ img {
     transition: var(--transition);
 }
 
-.tab-btn:hover {
+.filter-btn:hover {
     border-color: var(--text-primary);
     color: var(--text-primary);
 }
 
-.tab-btn.active {
+.filter-btn.active {
     background: var(--text-primary);
     border-color: var(--text-primary);
     color: white;
 }
 
-/* Concept Sliders */
-.concept-sliders {
-    position: relative;
+/* Instagram Link Button */
+.instagram-link-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-full);
+    color: var(--text-secondary);
+    text-decoration: none;
+    cursor: pointer;
+    transition: var(--transition);
 }
 
-.concept-slider {
-    display: none;
+.instagram-link-btn:hover {
+    border-color: var(--text-primary);
+    color: var(--text-primary);
+    transform: translateY(-2px);
+}
+
+.instagram-link-btn svg {
+    flex-shrink: 0;
+}
+
+/* Masonry Grid */
+.masonry-grid {
+    columns: 4;
+    column-gap: var(--space-md);
+}
+
+.masonry-item {
+    break-inside: avoid;
+    margin-bottom: var(--space-md);
     position: relative;
-    max-width: 900px;
-    margin: 0 auto;
-    border-radius: var(--radius-xl);
+    border-radius: var(--radius-lg);
     overflow: hidden;
-    box-shadow: var(--shadow-xl);
+    cursor: pointer;
+    transition: var(--transition);
 }
 
-.concept-slider.active {
-    display: block;
-}
-
-.portfolio-slider {
-    position: relative;
-    max-width: 900px;
-    margin: 0 auto;
-    border-radius: var(--radius-xl);
-    overflow: hidden;
-    box-shadow: var(--shadow-xl);
-}
-
-.slider-container {
-    position: relative;
+.masonry-item img {
     width: 100%;
-    aspect-ratio: 3/2;
-    background: #0a0a0a;
+    display: block;
+    transition: transform 0.5s var(--ease-smooth);
 }
 
-.slide {
+.masonry-item:hover img {
+    transform: scale(1.05);
+}
+
+.masonry-item .item-overlay {
     position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, transparent 50%);
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    padding: var(--space-lg);
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.masonry-item:hover .item-overlay {
+    opacity: 1;
+}
+
+.masonry-item .item-overlay span {
+    font-family: var(--font-en);
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: white;
+    letter-spacing: 0.05em;
+}
+
+/* Filter Animation */
+.masonry-item.hidden {
+    display: none;
+}
+
+.masonry-item.show {
+    animation: fadeInScale 0.4s ease forwards;
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Lightbox */
+.lightbox {
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10001;
     opacity: 0;
-    transition: opacity var(--transition-slow);
+    visibility: hidden;
+    transition: var(--transition);
 }
 
-.slide.active {
+.lightbox.active {
     opacity: 1;
+    visibility: visible;
 }
 
-.slide img {
-    width: 100%;
-    height: 100%;
+.lightbox-image {
+    max-width: 90%;
+    max-height: 85vh;
     object-fit: contain;
-    background: #0a0a0a;
+    border-radius: var(--radius-md);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
 }
 
-.slider-btn {
+.lightbox-close {
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+    top: var(--space-xl);
+    right: var(--space-xl);
     width: 48px;
     height: 48px;
-    background: var(--glass-bg);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid var(--glass-border);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: var(--radius-full);
-    font-size: 1.5rem;
-    color: var(--text-primary);
+    font-size: 1.75rem;
+    color: white;
     cursor: pointer;
     transition: var(--transition);
-    z-index: 10;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.slider-btn:hover {
-    background: white;
-    transform: translateY(-50%) scale(1.08);
-    box-shadow: var(--shadow-lg);
+.lightbox-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(90deg);
 }
 
-.slider-btn.prev {
-    left: var(--space-md);
-}
-
-.slider-btn.next {
-    right: var(--space-md);
-}
-
-.slider-dots {
+.lightbox-prev,
+.lightbox-next {
     position: absolute;
-    bottom: var(--space-md);
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: var(--space-sm);
-    z-index: 10;
-}
-
-.slider-dot {
-    width: 8px;
-    height: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 56px;
+    height: 56px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: var(--radius-full);
-    background: rgba(255, 255, 255, 0.4);
-    border: none;
+    font-size: 1.75rem;
+    color: white;
     cursor: pointer;
     transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.slider-dot.active {
-    background: white;
-    width: 24px;
+.lightbox-prev {
+    left: var(--space-xl);
 }
 
-.slider-dot:hover {
-    background: rgba(255, 255, 255, 0.7);
+.lightbox-next {
+    right: var(--space-xl);
+}
+
+.lightbox-prev:hover,
+.lightbox-next:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.lightbox-caption {
+    position: absolute;
+    bottom: var(--space-2xl);
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-en);
+    font-size: 0.938rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.8);
+    letter-spacing: 0.05em;
+}
+
+/* Responsive Masonry */
+@media (max-width: 1200px) {
+    .masonry-grid {
+        columns: 3;
+    }
+}
+
+@media (max-width: 768px) {
+    .masonry-grid {
+        columns: 2;
+    }
+
+    .portfolio-filters {
+        gap: var(--space-xs);
+    }
+
+    .filter-btn {
+        padding: var(--space-xs) var(--space-md);
+        font-size: 0.75rem;
+    }
+
+    .lightbox-prev,
+    .lightbox-next {
+        width: 44px;
+        height: 44px;
+        font-size: 1.5rem;
+    }
+
+    .lightbox-prev {
+        left: var(--space-md);
+    }
+
+    .lightbox-next {
+        right: var(--space-md);
+    }
+}
+
+@media (max-width: 480px) {
+    .masonry-grid {
+        columns: 1;
+    }
 }
 
 /* ==========================================

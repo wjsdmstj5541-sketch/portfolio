@@ -292,86 +292,157 @@ backToTop?.addEventListener('click', () => {
 });
 
 // ==========================================
-// Portfolio Concept Tabs & Sliders
+// Portfolio Masonry Filter & Lightbox
 // ==========================================
-const tabBtns = document.querySelectorAll('.tab-btn');
-const conceptSliders = document.querySelectorAll('.concept-slider');
+const filterBtns = document.querySelectorAll('.filter-btn');
+const masonryItems = document.querySelectorAll('.masonry-item');
+const lightbox = document.getElementById('lightbox');
+const lightboxImage = document.getElementById('lightboxImage');
+const lightboxCaption = document.getElementById('lightboxCaption');
+const lightboxClose = document.getElementById('lightboxClose');
+const lightboxPrev = document.getElementById('lightboxPrev');
+const lightboxNext = document.getElementById('lightboxNext');
 
-// Tab switching
-tabBtns.forEach(btn => {
+let currentImageIndex = 0;
+let visibleImages = [];
+
+// Filter functionality
+filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-        const concept = btn.dataset.concept;
+        const filter = btn.dataset.filter;
 
-        // Update active tab
-        tabBtns.forEach(b => b.classList.remove('active'));
+        // Update active button
+        filterBtns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
 
-        // Show corresponding slider
-        conceptSliders.forEach(slider => {
-            slider.classList.remove('active');
-            if (slider.id === concept) {
-                slider.classList.add('active');
+        // Filter items
+        masonryItems.forEach((item, index) => {
+            const category = item.dataset.category;
+
+            if (filter === 'all' || category === filter) {
+                item.classList.remove('hidden');
+                item.classList.add('show');
+                item.style.animationDelay = `${index * 0.05}s`;
+            } else {
+                item.classList.add('hidden');
+                item.classList.remove('show');
             }
         });
     });
 });
 
-// Initialize each concept slider
-conceptSliders.forEach(slider => {
-    const slides = slider.querySelectorAll('.slide');
-    const prevBtn = slider.querySelector('.slider-btn.prev');
-    const nextBtn = slider.querySelector('.slider-btn.next');
-    const dotsContainer = slider.querySelector('.slider-dots');
-    let currentSlide = 0;
-    const totalSlides = slides.length;
+// Update visible images array
+function updateVisibleImages() {
+    visibleImages = Array.from(masonryItems).filter(item => !item.classList.contains('hidden'));
+}
 
-    // Create dots
-    if (dotsContainer && totalSlides > 0) {
-        dotsContainer.innerHTML = '';
-        for (let i = 0; i < totalSlides; i++) {
-            const dot = document.createElement('button');
-            dot.classList.add('slider-dot');
-            if (i === 0) dot.classList.add('active');
-            dot.addEventListener('click', () => goToSlide(i));
-            dotsContainer.appendChild(dot);
-        }
-    }
-
-    const dots = slider.querySelectorAll('.slider-dot');
-
-    function updateSlider() {
-        slides.forEach((slide, index) => {
-            slide.classList.remove('active');
-            if (index === currentSlide) {
-                slide.classList.add('active');
-            }
-        });
-
-        dots.forEach((dot, index) => {
-            dot.classList.remove('active');
-            if (index === currentSlide) {
-                dot.classList.add('active');
-            }
-        });
-    }
-
-    function goToSlide(index) {
-        currentSlide = index;
-        updateSlider();
-    }
-
-    function nextSlide() {
-        currentSlide = (currentSlide + 1) % totalSlides;
-        updateSlider();
-    }
-
-    function prevSlide() {
-        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-        updateSlider();
-    }
-
-    if (prevBtn) prevBtn.addEventListener('click', prevSlide);
-    if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+// Lightbox functionality
+masonryItems.forEach((item, index) => {
+    item.addEventListener('click', () => {
+        updateVisibleImages();
+        currentImageIndex = visibleImages.indexOf(item);
+        openLightbox(item);
+    });
 });
 
-console.log('Portfolio loaded with all effects! ✨');
+function openLightbox(item) {
+    const img = item.querySelector('img');
+    const caption = item.querySelector('.item-overlay span');
+
+    if (img && lightboxImage) {
+        lightboxImage.src = img.src;
+        lightboxImage.alt = img.alt;
+    }
+
+    if (caption && lightboxCaption) {
+        lightboxCaption.textContent = caption.textContent;
+    }
+
+    lightbox?.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+    lightbox?.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+function showPrevImage() {
+    if (visibleImages.length === 0) return;
+    currentImageIndex = (currentImageIndex - 1 + visibleImages.length) % visibleImages.length;
+    const item = visibleImages[currentImageIndex];
+    const img = item.querySelector('img');
+    const caption = item.querySelector('.item-overlay span');
+
+    if (img && lightboxImage) {
+        lightboxImage.src = img.src;
+        lightboxImage.alt = img.alt;
+    }
+
+    if (caption && lightboxCaption) {
+        lightboxCaption.textContent = caption.textContent;
+    }
+}
+
+function showNextImage() {
+    if (visibleImages.length === 0) return;
+    currentImageIndex = (currentImageIndex + 1) % visibleImages.length;
+    const item = visibleImages[currentImageIndex];
+    const img = item.querySelector('img');
+    const caption = item.querySelector('.item-overlay span');
+
+    if (img && lightboxImage) {
+        lightboxImage.src = img.src;
+        lightboxImage.alt = img.alt;
+    }
+
+    if (caption && lightboxCaption) {
+        lightboxCaption.textContent = caption.textContent;
+    }
+}
+
+// Lightbox event listeners
+lightboxClose?.addEventListener('click', closeLightbox);
+lightboxPrev?.addEventListener('click', showPrevImage);
+lightboxNext?.addEventListener('click', showNextImage);
+
+// Close lightbox on background click
+lightbox?.addEventListener('click', (e) => {
+    if (e.target === lightbox) {
+        closeLightbox();
+    }
+});
+
+// Keyboard navigation
+document.addEventListener('keydown', (e) => {
+    if (!lightbox?.classList.contains('active')) return;
+
+    switch (e.key) {
+        case 'Escape':
+            closeLightbox();
+            break;
+        case 'ArrowLeft':
+            showPrevImage();
+            break;
+        case 'ArrowRight':
+            showNextImage();
+            break;
+    }
+});
+
+// Add cursor hover effect to masonry items
+masonryItems.forEach(item => {
+    item.addEventListener('mouseenter', () => {
+        cursor?.classList.add('hover');
+    });
+    item.addEventListener('mouseleave', () => {
+        cursor?.classList.remove('hover');
+    });
+});
+
+// Initialize all items as visible
+masonryItems.forEach(item => {
+    item.classList.add('show');
+});
+
+console.log('Portfolio loaded with Masonry Grid & Lightbox! ✨');
