@@ -994,20 +994,23 @@ img {
     flex-shrink: 0;
 }
 
-/* Masonry Grid */
+/* Masonry Grid - True Masonry with columns */
 .masonry-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: var(--space-md);
+    column-count: 4;
+    column-gap: 16px;
 }
 
 .masonry-item {
     break-inside: avoid;
+    -webkit-column-break-inside: avoid;
     position: relative;
     border-radius: var(--radius-lg);
     overflow: hidden;
     cursor: pointer;
     transition: var(--transition);
+    margin-bottom: 16px;
+    display: inline-block;
+    width: 100%;
 }
 
 .masonry-item img {
@@ -1170,13 +1173,13 @@ img {
 /* Responsive Masonry */
 @media (max-width: 1200px) {
     .masonry-grid {
-        grid-template-columns: repeat(3, 1fr);
+        column-count: 3;
     }
 }
 
 @media (max-width: 768px) {
     .masonry-grid {
-        grid-template-columns: repeat(2, 1fr);
+        column-count: 2;
     }
 
     .portfolio-filters {
@@ -1206,7 +1209,7 @@ img {
 
 @media (max-width: 480px) {
     .masonry-grid {
-        grid-template-columns: 1fr;
+        column-count: 1;
     }
 }
 

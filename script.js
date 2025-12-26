@@ -296,6 +296,7 @@ backToTop?.addEventListener('click', () => {
 // ==========================================
 const filterBtns = document.querySelectorAll('.filter-btn');
 const masonryItems = document.querySelectorAll('.masonry-item');
+const masonryGrid = document.querySelector('.masonry-grid');
 const lightbox = document.getElementById('lightbox');
 const lightboxImage = document.getElementById('lightboxImage');
 const lightboxCaption = document.getElementById('lightboxCaption');
@@ -306,6 +307,24 @@ const lightboxNext = document.getElementById('lightboxNext');
 let currentImageIndex = 0;
 let visibleImages = [];
 
+// Shuffle array function
+function shuffleArray(array) {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+}
+
+// Shuffle and reorder DOM elements
+function shuffleGrid() {
+    if (!masonryGrid) return;
+    const items = Array.from(masonryGrid.querySelectorAll('.masonry-item'));
+    const shuffled = shuffleArray(items);
+    shuffled.forEach(item => masonryGrid.appendChild(item));
+}
+
 // Filter functionality
 filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -315,20 +334,33 @@ filterBtns.forEach(btn => {
         filterBtns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
 
+        // Shuffle when 'All' is selected
+        if (filter === 'all') {
+            shuffleGrid();
+        }
+
         // Filter items
-        masonryItems.forEach((item, index) => {
+        const items = masonryGrid.querySelectorAll('.masonry-item');
+        items.forEach((item, index) => {
             const category = item.dataset.category;
 
             if (filter === 'all' || category === filter) {
                 item.classList.remove('hidden');
                 item.classList.add('show');
-                item.style.animationDelay = `${index * 0.05}s`;
+                item.style.animationDelay = `${index * 0.03}s`;
             } else {
                 item.classList.add('hidden');
                 item.classList.remove('show');
             }
         });
     });
+});
+
+// Initial shuffle on page load
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        shuffleGrid();
+    }, 100);
 });
 
 // Update visible images array
