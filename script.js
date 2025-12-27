@@ -76,7 +76,7 @@ interactiveElements.forEach(el => {
 // 2. Typing Effect
 // ==========================================
 const heroTag = document.querySelector('.hero-tag');
-const typingText = '📷 Photographer';
+const typingText = '분위기를 담는 사람';
 let charIndex = 0;
 
 function typeText() {
