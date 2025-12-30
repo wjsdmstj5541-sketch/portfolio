@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>전은서 이력서</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 10pt;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: white;
+        }
+
+        .resume {
+            max-width: 210mm;
+            min-height: 297mm;
+            margin: 0 auto;
+            padding: 15mm 20mm;
+            background: white;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #1a1a1a;
+            margin-bottom: 25px;
+        }
+
+        .name {
+            font-size: 28pt;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            margin-bottom: 5px;
+        }
+
+        .tagline {
+            font-size: 11pt;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            font-size: 9pt;
+            color: #444;
+        }
+
+        .contact-info span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Sections */
+        .section {
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 11pt;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 12px;
+        }
+
+        /* Education & Experience Items */
+        .item {
+            display: flex;
+            margin-bottom: 8px;
+        }
+
+        .item-date {
+            width: 90px;
+            flex-shrink: 0;
+            font-size: 9pt;
+            color: #666;
+        }
+
+        .item-content {
+            flex: 1;
+        }
+
+        .item-title {
+            font-weight: 500;
+        }
+
+        .item-desc {
+            font-size: 9pt;
+            color: #666;
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px 30px;
+        }
+
+        .skill-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .skill-name {
+            font-size: 9.5pt;
+        }
+
+        .skill-level {
+            font-size: 9pt;
+            color: #666;
+        }
+
+        /* About/Statement */
+        .statement {
+            padding: 15px 20px;
+            background: #f8f8f8;
+            border-left: 3px solid #1a1a1a;
+        }
+
+        .statement-quote {
+            font-size: 12pt;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .statement p {
+            font-size: 9.5pt;
+            color: #444;
+            margin-bottom: 6px;
+        }
+
+        .statement p:last-child {
+            margin-bottom: 0;
+        }
+
+        .emphasis {
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+
+        /* Certifications */
+        .cert-item {
+            display: inline-block;
+            padding: 4px 12px;
+            background: #f0f0f0;
+            border-radius: 4px;
+            font-size: 9pt;
+            margin-right: 8px;
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .resume {
+                padding: 10mm 15mm;
+            }
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="resume">
+        <!-- Header -->
+        <header class="header">
+            <h1 class="name">전은서</h1>
+            <p class="tagline">분위기를 담는 사람</p>
+            <div class="contact-info">
+                <span>Tel. 010-5541-0357</span>
+                <span>E-mail. haaruu_123@naver.com</span>
+                <span>Instagram. @haaaaaaaaaaaaaaaaaaaaaaaaaaaru</span>
+                <span>Birth. 2002.07.23</span>
+            </div>
+        </header>
+
+        <!-- About / Personal Statement -->
+        <section class="section">
+            <h2 class="section-title">자기소개</h2>
+            <div class="statement">
+                <p class="statement-quote">"기회라면? 잡아야죠."</p>
+                <p>저는 완벽한 조건을 기다리기보다 먼저 실행하고, 과정 속에서 방향을 맞춰가는 사람입니다. 주도적인 태도로 작업에 임하며, 결과물에 대한 책임감을 가지고 있습니다.</p>
+                <p>조건보다 가능성을 먼저 보고, 어떤 환경에서든 배우고 성장할 준비가 되어 있습니다.</p>
+            </div>
+        </section>
+
+        <!-- Education -->
+        <section class="section">
+            <h2 class="section-title">학력</h2>
+            <div class="item">
+                <span class="item-date">2025.02</span>
+                <div class="item-content">
+                    <span class="item-title">신구대학교 사진영상미디어과 졸업</span>
+                </div>
+            </div>
+            <div class="item">
+                <span class="item-date">2021.02</span>
+                <div class="item-content">
+                    <span class="item-title">조종고등학교 정보통신과 졸업</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Work Experience -->
+        <section class="section">
+            <h2 class="section-title">경력 및 활동</h2>
+            <div class="item">
+                <span class="item-date">2025</span>
+                <div class="item-content">
+                    <span class="item-title">제네시스 GV60 MAGMA 지면광고 연출팀 참여</span>
+                </div>
+            </div>
+            <div class="item">
+                <span class="item-date">2025</span>
+                <div class="item-content">
+                    <span class="item-title">제네시스 G90 지면광고 연출팀 참여</span>
+                </div>
+            </div>
+            <div class="item">
+                <span class="item-date">2023</span>
+                <div class="item-content">
+                    <span class="item-title">반려동물 출장스튜디오 공동창업</span>
+                    <p class="item-desc">친구와 동업으로 운영. 파트너는 실내 스튜디오, 본인은 야외 스냅 촬영 전담</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills -->
+        <section class="section">
+            <h2 class="section-title">보유 기술</h2>
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <span class="skill-name">Adobe Lightroom Classic</span>
+                    <span class="skill-level">상</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-name">Adobe Photoshop</span>
+                    <span class="skill-level">중</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-name">Capture One</span>
+                    <span class="skill-level">중</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-name">Adobe Premiere</span>
+                    <span class="skill-level">중</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications -->
+        <section class="section">
+            <h2 class="section-title">자격증</h2>
+            <span class="cert-item">무인멀티콥터 1종 (2022)</span>
+        </section>
+
+        <!-- Philosophy -->
+        <section class="section">
+            <h2 class="section-title">성장 스토리</h2>
+            <div class="statement">
+                <p class="statement-quote">"주도하는 촬영자로의 성장"</p>
+                <p>초반에는 모델의 포스에 압도되어 주눅 들어 촬영하던 시절이 있었습니다. 촬영을 주도하지 못했고, 모델도 저를 신뢰하지 못했습니다. 그 경험 이후, 촬영 현장에서는 내가 이끌어야
+                    한다는 것을 깨달았고, 주체적인 정신으로 촬영을 이끌어가는 방식을 익혀왔습니다.</p>
+            </div>
+            <div class="statement" style="margin-top: 12px;">
+                <p class="statement-quote">"편안한 분위기를 만드는 법"</p>
+                <p>반려동물 출장 스튜디오를 운영하면서 고객 응대의 중요성을 배웠습니다. 고객의 기분을 파악하고, 어떻게 대화해야 편안함을 느끼고 긴장을 푸는지 알게 되었습니다. 자연스럽게 소통하며
+                    좋은 분위기를 이끌어내는 법을 익혔습니다.</p>
+            </div>
+            <div class="statement" style="margin-top: 12px;">
+                <p class="statement-quote">"넓은 시야로 상황을 보다"</p>
+                <p>하나에 집중하면 전체를 놓치는 경향이 있었습니다. 이를 극복하기 위해 작업 시작 전 잠시 멈춰 전체 상황을 파악하는 습관을 들였습니다. 덕분에 우선순위를 판단하고, 효율적으로 작업을
+                    진행할 수 있게 되었습니다.</p>
+            </div>
+        </section>
+
+        <!-- Vision -->
+        <section class="section">
+            <h2 class="section-title">비전</h2>
+            <div class="statement">
+                <p class="statement-quote">"꾸준히 성장하며 기여하겠습니다"</p>
+                <p>저는 제 시선으로 세상을 바라보고, 그 시선을 사진으로 표현해왔습니다. 저만의 관점을 담은 작업으로 사람들에게 새로운 경험을 전달하는 것이 목표입니다.</p>
+                <p>입사 후에도 지속적으로 배우고 성장하며, 팀과 회사에 실질적으로 기여할 수 있는 인재가 되겠습니다.</p>
+            </div>
+        </section>
+    </div>
+</body>
+
+</html>
