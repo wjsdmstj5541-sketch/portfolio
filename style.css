@@ -2022,10 +2022,16 @@ img {
         flex-direction: row;
         flex-wrap: wrap;
         gap: var(--space-sm);
+        margin-bottom: var(--space-2xl);
     }
 
     .keyword {
         font-size: 0.7rem;
+    }
+
+    /* Hide scroll hint on mobile - takes up space */
+    .scroll-hint {
+        display: none;
     }
 
     .profile-card {
