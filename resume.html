@@ -186,16 +186,49 @@
 </head>
 
 <body>
+    <!-- PDF Download Button -->
+    <button class="pdf-btn" onclick="window.print()">PDF 다운로드</button>
+
+    <style>
+        .pdf-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 12px 24px;
+            background: #1a1a1a;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .pdf-btn:hover {
+            background: #333;
+            transform: translateY(-2px);
+        }
+
+        @media print {
+            .pdf-btn {
+                display: none;
+            }
+        }
+    </style>
+
     <div class="resume">
         <!-- Header -->
         <header class="header">
             <h1 class="name">전은서</h1>
             <p class="tagline">분위기를 담는 사람</p>
             <div class="contact-info">
-                <span>Tel. 010-5541-0357</span>
-                <span>E-mail. haaruu_123@naver.com</span>
-                <span>Instagram. @haaaaaaaaaaaaaaaaaaaaaaaaaaaru</span>
-                <span>Birth. 2002.07.23</span>
+                <span>Tel.<br>010-5541-0357</span>
+                <span>E-mail.<br>haaruu_123@naver.com</span>
+                <span>Instagram.<br>@haaaaaaaaaaaaaaaaaaaaaaaaaaaru</span>
+                <span>Birth.<br>2002.07.23</span>
             </div>
         </header>
 
@@ -281,7 +314,7 @@
 
         <!-- Philosophy -->
         <section class="section">
-            <h2 class="section-title">성장 스토리</h2>
+            <h2 class="section-title">성장 경험</h2>
             <div class="statement">
                 <p class="statement-quote">"주도하는 촬영자로의 성장"</p>
                 <p>초반에는 모델의 포스에 압도되어 주눅 들어 촬영하던 시절이 있었습니다. 촬영을 주도하지 못했고, 모델도 저를 신뢰하지 못했습니다. 그 경험 이후, 촬영 현장에서는 내가 이끌어야
