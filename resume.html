@@ -205,14 +205,16 @@
             }
 
             .contact-info {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 12px;
-                text-align: center;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                gap: 8px;
+                flex-wrap: nowrap;
             }
 
             .contact-info span {
-                font-size: 8pt;
+                font-size: 6pt;
+                white-space: nowrap;
             }
 
             .section-title {
