@@ -2014,16 +2014,24 @@ img {
     }
 
     .hero-keywords {
-        align-items: flex-start;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: var(--space-sm);
     }
 
     .keyword {
-        font-size: 0.875rem;
+        font-size: 0.7rem;
     }
 
     .profile-card {
-        max-width: 200px;
+        max-width: 160px;
         margin: 0 auto;
+    }
+
+    .profile-card img {
+        object-fit: contain;
+        width: 100%;
+        height: auto;
     }
 
     /* Experience Cards Mobile */
