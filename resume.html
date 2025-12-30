@@ -182,6 +182,66 @@
             size: A4;
             margin: 0;
         }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .resume {
+                padding: 20px 15px;
+                min-height: auto;
+            }
+
+            .header {
+                padding-bottom: 15px;
+                margin-bottom: 20px;
+            }
+
+            .name {
+                font-size: 20pt;
+            }
+
+            .tagline {
+                font-size: 10pt;
+                margin-bottom: 12px;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .contact-info span {
+                text-align: center;
+            }
+
+            .section-title {
+                font-size: 10pt;
+            }
+
+            .item {
+                flex-direction: column;
+                gap: 4px;
+            }
+
+            .item-date {
+                width: auto;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .statement {
+                padding: 12px 15px;
+            }
+
+            .statement-quote {
+                font-size: 11pt;
+            }
+
+            .statement p {
+                font-size: 9pt;
+            }
+        }
     </style>
 </head>
 
