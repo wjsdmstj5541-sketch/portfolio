@@ -490,6 +490,39 @@ img {
     font-weight: 400;
 }
 
+.info-contact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    margin-top: var(--space-md);
+}
+
+.contact-item {
+    font-size: 0.813rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.contact-item:hover {
+    color: var(--text-primary);
+}
+
+.contact-label {
+    font-family: var(--font-en);
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* Instagram ID - show full version by default */
+.contact-value-short {
+    display: none;
+}
+
+.contact-value-full {
+    display: inline;
+}
+
 .hero-keywords {
     display: flex;
     gap: var(--space-2xl);
@@ -926,6 +959,30 @@ img {
 
 .skill-progress.animate {
     width: var(--progress);
+}
+
+.cert-section {
+    margin-top: var(--space-lg);
+    padding-top: var(--space-md);
+    border-top: 1px solid var(--border-color);
+}
+
+.cert-badge {
+    font-size: 0.813rem;
+    color: var(--text-secondary);
+}
+
+.goto-link {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-decoration: none;
+    margin-left: var(--space-xs);
+    transition: var(--transition);
+}
+
+.goto-link:hover {
+    color: var(--text-primary);
 }
 
 /* ==========================================
@@ -1768,40 +1825,78 @@ img {
 }
 
 @media (max-width: 768px) {
-    .nav-menu {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 80%;
-        max-width: 280px;
-        height: 100vh;
-        background: white;
-        flex-direction: column;
-        padding: var(--space-4xl) var(--space-xl);
-        gap: var(--space-lg);
-        transition: var(--transition);
-        box-shadow: -10px 0 40px rgba(0, 0, 0, 0.1);
+
+    /* Fixed Top Navigation Bar - Always Visible */
+    .navbar {
+        padding: var(--space-sm) 0;
     }
 
-    .nav-menu.active {
-        right: 0;
+    .nav-container {
+        flex-direction: column;
+        gap: var(--space-sm);
+        padding: 0 var(--space-md);
+    }
+
+    .nav-logo {
+        font-size: 1rem;
+    }
+
+    .nav-menu {
+        display: flex;
+        gap: var(--space-sm);
+        flex-wrap: wrap;
+        justify-content: center;
+        background: transparent;
+        position: static;
+        width: auto;
+        height: auto;
+        padding: 0;
+        box-shadow: none;
+    }
+
+    .nav-link {
+        font-size: 0.7rem;
+        padding: var(--space-xs) var(--space-sm);
+        background: var(--bg-secondary);
+        border-radius: var(--radius-full);
+    }
+
+    .nav-link.active {
+        background: var(--text-primary);
+        color: white;
     }
 
     .nav-toggle {
-        display: flex;
-        z-index: 1001;
+        display: none;
     }
 
-    .nav-toggle.active .bar:nth-child(1) {
-        transform: rotate(45deg) translate(4px, 4px);
-    }
-
-    .nav-toggle.active .bar:nth-child(2) {
-        transform: rotate(-45deg) translate(4px, -4px);
-    }
-
+    /* Horizontal Scroll Cards */
     .exp-grid {
-        grid-template-columns: 1fr;
+        display: flex;
+        overflow-x: auto;
+        gap: var(--space-md);
+        padding-bottom: var(--space-md);
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .exp-grid::-webkit-scrollbar {
+        height: 4px;
+    }
+
+    .exp-grid::-webkit-scrollbar-track {
+        background: var(--border-color);
+        border-radius: 4px;
+    }
+
+    .exp-grid::-webkit-scrollbar-thumb {
+        background: var(--text-muted);
+        border-radius: 4px;
+    }
+
+    .exp-card {
+        flex: 0 0 280px;
+        scroll-snap-align: start;
     }
 
     .about-traits {
@@ -1836,13 +1931,211 @@ img {
 
 @media (max-width: 480px) {
     html {
-        font-size: 15px;
+        font-size: 14px;
     }
 
     .section {
-        padding: var(--space-3xl) var(--space-lg);
+        padding: var(--space-2xl) var(--space-md);
     }
 
+    /* Hero Mobile */
+    .hero {
+        min-height: auto;
+        padding: 120px var(--space-md) var(--space-2xl);
+    }
+
+    .hero-content {
+        flex-direction: column;
+        gap: var(--space-xl);
+        text-align: center;
+    }
+
+    .hero-text {
+        order: 2;
+    }
+
+    .hero-visual {
+        order: 1;
+    }
+
+    .hero-tag {
+        font-size: 0.75rem;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .hero-info {
+        text-align: left;
+    }
+
+    .info-name {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-xs);
+    }
+
+    .info-contact {
+        flex-direction: column;
+        gap: var(--space-xs);
+    }
+
+    .contact-item {
+        font-size: 0.7rem;
+    }
+
+    /* Keep contact labels on mobile */
+    .contact-label {
+        display: inline;
+    }
+
+    .info-contact {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: var(--space-sm);
+        justify-content: flex-start;
+    }
+
+    .info-contact .contact-item {
+        font-size: 0.65rem;
+        padding: var(--space-xs) var(--space-sm);
+        background: var(--bg-secondary);
+        border-radius: var(--radius-full);
+    }
+
+    /* Show short Instagram ID on mobile */
+    .contact-value-short {
+        display: inline;
+    }
+
+    .contact-value-full {
+        display: none;
+    }
+
+    .hero-keywords {
+        align-items: flex-start;
+    }
+
+    .keyword {
+        font-size: 0.875rem;
+    }
+
+    .profile-card {
+        max-width: 200px;
+        margin: 0 auto;
+    }
+
+    /* Experience Cards Mobile */
+    .exp-card {
+        padding: var(--space-md);
+    }
+
+    .exp-title {
+        font-size: 0.75rem;
+        margin-bottom: var(--space-sm);
+    }
+
+    .exp-date {
+        font-size: 0.65rem;
+        min-width: 50px;
+    }
+
+    .exp-desc {
+        font-size: 0.8rem;
+    }
+
+    .skill-name {
+        font-size: 0.75rem;
+    }
+
+    .skill-percent {
+        font-size: 0.65rem;
+    }
+
+    /* About Mobile */
+    .about-layout {
+        flex-direction: column;
+    }
+
+    .about-sidebar {
+        display: none;
+    }
+
+    .about-quote {
+        font-size: 1.25rem;
+    }
+
+    .about-text p {
+        font-size: 0.875rem;
+    }
+
+    /* Projects Mobile - Compact */
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .project-card {
+        flex-direction: row;
+        align-items: center;
+        padding: var(--space-md);
+        gap: var(--space-md);
+    }
+
+    .project-image {
+        width: 100px;
+        height: 100px;
+        flex-shrink: 0;
+        border-radius: var(--radius-md);
+    }
+
+    .project-content {
+        padding: 0;
+    }
+
+    .project-title {
+        font-size: 0.938rem;
+        margin-bottom: var(--space-xs);
+    }
+
+    .project-description {
+        font-size: 0.75rem;
+        margin-bottom: var(--space-sm);
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .project-meta {
+        font-size: 0.65rem;
+        margin-bottom: var(--space-sm);
+    }
+
+    .project-links {
+        flex-direction: row;
+        gap: var(--space-xs);
+    }
+
+    .project-link-box {
+        padding: 4px 8px;
+        font-size: 0.6rem;
+        gap: 4px;
+    }
+
+    .link-icon {
+        font-size: 0.75rem;
+    }
+
+    .link-label {
+        font-size: 0.6rem;
+    }
+
+    .link-account {
+        display: none;
+    }
+
+    /* Contact Mobile */
     .contact-grid {
         grid-template-columns: 1fr;
     }
@@ -1851,5 +2144,21 @@ img {
         flex-direction: column;
         gap: var(--space-md);
         text-align: center;
+    }
+
+    /* Section Headers Mobile */
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    /* Philosophy & Vision Mobile */
+    .quote-text,
+    .vision-quote {
+        font-size: 1.25rem;
+    }
+
+    .quote-content p,
+    .vision-text p {
+        font-size: 0.875rem;
     }
 }
