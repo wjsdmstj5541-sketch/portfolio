@@ -1941,8 +1941,12 @@ img {
 
     /* Hero Mobile */
     .hero {
-        min-height: auto;
-        padding: 120px var(--space-md) var(--space-2xl);
+        min-height: 100vh;
+        min-height: 100dvh;
+        /* dynamic viewport height for mobile browsers */
+        padding: 100px var(--space-md) var(--space-xl);
+        display: flex;
+        align-items: center;
     }
 
     .hero-content {
